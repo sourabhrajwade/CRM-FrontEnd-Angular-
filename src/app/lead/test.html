@@ -1,0 +1,104 @@
+<mat-toolbar>
+  <h1>New Leads</h1>
+  <!-- <span>{{form.controls['$key'].value?"Modify Employee":"New Employee"}}</span> -->
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+
+  <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="3" rowHeight="400px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <input formControlName="fullname"  placeholder="Full Name*">
+            <mat-error>This field is mandatory.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="email"  placeholder="Email">
+            <mat-error>Invalid email address.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="mobile"  placeholder="Mobile*">
+            <mat-error *ngIf="form.controls['mobile'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="form.controls['mobile'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="city"  placeholder="City">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="createdDate"  [matDatepicker]="picker" placeholder="Contacted On">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="updatedDate"  [matDatepicker]="pickers" placeholder="Next Contact">
+            <mat-datepicker-toggle matSuffix [for]="pickers"></mat-datepicker-toggle>
+            <mat-datepicker #pickers></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container">
+          <div class="add-bottom-padding">
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button value="1">Male</mat-radio-button>
+              <mat-radio-button value="2">Female</mat-radio-button>
+              <mat-radio-button value="3">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field>
+            <mat-select formControlName="department" placeholder="Department">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let department of departmentarray;let i of index;">
+                <mat-option value="{{department}}">{{i}}-{{department}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="status" placeholder="Status">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let status of statusArr; let i of index;">
+                <mat-option value="{{i}}">{{i}}-{{status}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="priority" placeholder="Priority">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let pri of priorityArr;let i of index;">
+                <mat-option value="{{i}}">{{i}}-{{pri}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="source" placeholder="Source">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let s of sourceArr;let i of index;">
+                <mat-option value="{{i}}">{{i}}-{{s}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <textarea rows="2" formControlName="desciption"  placeholder="Description Name">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+        <mat-grid-tile>
+          <div class="controles-container">
+          <mat-form-field>
+            <input formControlName="companyname"  placeholder="Company Name">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="assignedTo"  placeholder="Assigned to">
+          </mat-form-field>
+          <div class="add-bottom-padding">
+            <mat-checkbox formControlName="isPermanent">Permanent Contact</mat-checkbox>
+          </div>
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>

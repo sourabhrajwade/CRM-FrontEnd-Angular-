@@ -1,0 +1,92 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === true"
+  >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item *ngIf="!userIsAUthenticated" routerLink="/login">
+        LOGIN
+      </a>
+      <a mat-list-item *ngIf="!userIsAUthenticated" routerLink="/signup">
+        SIGNUP
+      </a>
+      <a mat-list-item *ngIf="userIsAUthenticated" routerLink="/dashboard">
+        DASHBOARD
+      </a>
+      <a mat-list-item *ngIf="userIsAUthenticated" routerLink="/dashboard">
+        LOGOUT
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="example-spacer"></span>
+      <a
+        class="items"
+        mat-list-item
+        *ngIf="!userIsAUthenticated"
+        routerLink="/login"
+      >
+        LOGIN
+      </a>
+      <a
+        class="items"
+        mat-list-item
+        *ngIf="!userIsAUthenticated"
+        routerLink="/signup"
+      >
+        SIGNUP
+      </a>
+      <a
+        class="items"
+        mat-list-item
+        *ngIf="userIsAUthenticated"
+        routerLink="/dashboard"
+      >
+        DASHBOARD
+      </a>
+      <a
+        class="items"
+        mat-list-item
+        *ngIf="userIsAUthenticated"
+        routerLink="/dashboard"
+      >
+        LOGOUT
+      </a>
+      <button
+        mat-icon-button
+        class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon"
+      >
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with share icon"
+      >
+        <mat-icon>share</mat-icon>
+      </button>
+    </mat-toolbar>
+    <mat-drawer-container class="example-container">
+      <mat-drawer mode="side" opened *ngIf="userIsAUthenticated">Drawer content</mat-drawer>
+      <mat-drawer-content> <router-outlet></router-outlet></mat-drawer-content>
+    </mat-drawer-container>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,101 @@
+<mat-card>
+  <mat-card-header>
+      <mat-toolbar>
+        <h1>Leads</h1>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+      </mat-toolbar>
+  </mat-card-header>
+<mat-card-content>
+  <form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="500px">
+      <mat-grid-tile>
+        <div class="controles-container">
+
+          <mat-form-field>
+            <input formControlName="fullname" matInput placeholder="Full Name*">
+            <mat-error>This field is mandatory.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="email" matInput placeholder="Email">
+            <mat-error>Invalid email address.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="mobile" matInput placeholder="Mobile*">
+            <mat-error *ngIf="form.controls['mobile'].errors?.required">This field is mandatory.</mat-error>
+            <mat-error *ngIf="form.controls['mobile'].errors?.minlength">Minimum 8 charactors needed.</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="city" matInput placeholder="City">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="description" matInput placeholder="Description">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="status" placeholder="Status">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let s of statusArr">
+                <mat-option [value]="s.value">{{s.viewValue}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="priority" placeholder="Priority">
+              <ng-container *ngFor="let p of priorityArr;">
+                <mat-option [value]="p.value">{{p.viewValue}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="controles-container">
+          <div class="add-bottom-padding">
+            <mat-radio-group formControlName="gender">
+              <mat-radio-button value="male">Male</mat-radio-button>
+              <mat-radio-button value="female">Female</mat-radio-button>
+              <mat-radio-button value="other">Other</mat-radio-button>
+            </mat-radio-group>
+          </div>
+          <mat-form-field>
+            <mat-select formControlName="department" placeholder="Department">
+              <mat-option>None</mat-option>
+              <ng-container *ngFor="let department of departmentarray">
+                <mat-option [value]="department.value">{{department.viewValue}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input formControlName="doneby" matInput [matDatepicker]="picker" placeholder="Done by">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-select formControlName="source" placeholder="Source">
+              <ng-container *ngFor="let s of sourceArr">
+                <mat-option [value]="s.value">{{s.viewValue}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="companyname" matInput placeholder="Company Name To">
+          </mat-form-field>
+          <mat-form-field>
+            <input formControlName="assignedTo" matInput placeholder="Assigned To">
+          </mat-form-field>
+
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+            <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</mat-card-content>
+</mat-card>
+
+
+

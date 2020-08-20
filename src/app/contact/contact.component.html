@@ -1,0 +1,98 @@
+<div class="contact-form">
+  <form [formGroup]="contactForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="login-card">
+      <mat-card-header class="header">
+        <mat-toolbar class="heading">
+          <span class="heading-item"><mat-card-title class="item"> CONTACTS 📓  </mat-card-title></span>
+          <span class="heading-item fill-remaining-space"></span>
+          <span class="heading-item"
+            ><button
+              class="btn-dialog-close"
+              mat-stroked-button
+              (click)="close()"
+              tabindex="-1"
+            >
+              <mat-icon>clear</mat-icon>
+            </button></span
+          >
+        </mat-toolbar>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Name"
+                formControlName="name"
+                type="name"
+              />
+              <mat-error
+                *ngIf="contactForm.controls['name'].hasError('required')"
+              >
+                Name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input
+                matInput
+                placeholder="Email Id"
+                #email
+                formControlName="email"
+                type="email"
+              />
+              <mat-error
+                *ngIf="contactForm.controls['email'].hasError('required')"
+              >
+                Email 📧 is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input
+                #phone
+                matInput
+                placeholder="Phone"
+                type="number"
+                formControlName="phone"
+                minlength="10"
+              />
+              <mat-error
+                *ngIf="contactForm.controls['phone'].hasError('required')"
+              >
+                Password is <strong>required</strong>
+              </mat-error>
+              <mat-hint align="end">{{ phone.value.length }} / 10</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="btn btn-style">
+        <button
+          class="full-width btn-item"
+          mat-raised-button
+          color="primary"
+          type="submit"
+        >
+          ADD CONTACT
+        </button>
+        <button
+          class="full-width btn-item"
+          mat-raised-button
+          color="danger"
+          (click)="clear()"
+          type="button"
+        >
+          CLEAR
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

@@ -1,0 +1,47 @@
+.full-width {
+  width: 100%;
+}
+* {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.login-card {
+  width: 400px;
+  text-align: center;
+  min-width: 120px;
+  margin: 50px auto;
+}
+.header {
+  display: flex;
+  font-weight: 600;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+.item {
+  padding-bottom: 5px;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+.row {
+
+  display: flex;
+  flex-direction: row;
+
+}
+
+.col {
+  flex: 1;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+

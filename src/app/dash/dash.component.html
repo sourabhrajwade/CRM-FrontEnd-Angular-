@@ -1,0 +1,67 @@
+<div class="grid-container text-center">
+  <h1 class="mat-h1">
+    CRM 🤝 Dashboard . Welcome {{ user.user.firstname }} 🎉!
+  </h1>
+  <mat-grid-list cols="{{ (cardLayout | async)?.columns }}" rowHeight="200px">
+    <!--Mini Cards-->
+    <mat-grid-tile
+      *ngFor="let mc of miniCardSummary"
+      [colspan]="(cardLayout | async)?.miniCard.cols"
+      [rowspan]="(cardLayout | async)?.miniCard.rows"
+    >
+      <app-mini-card
+        [icon]="mc.icon"
+        [title]="mc.title"
+        [value]="mc.value"
+        [color]="mc.color"
+        [isIncrease]="mc.isIncrease"
+        duration="since last month"
+        [percentValue]="mc.percentValue"
+        [isCurrency]="mc.isCurrency"
+      ></app-mini-card>
+    </mat-grid-tile>
+
+    <!--Charts-->
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart.cols"
+      [rowspan]="(cardLayout | async)?.chart.rows"
+    >
+      <app-card title="Leads">
+        <mat-tab-group mat-align-tabs="end">
+          <mat-tab label="Leads" >
+            <app-lead-table></app-lead-table>
+          </mat-tab>
+          <mat-tab label="Contacts"
+            ><app-contact-list></app-contact-list
+          ></mat-tab>
+          <mat-tab label="Service Request"
+            ><app-contact-list></app-contact-list
+          ></mat-tab>
+        </mat-tab-group>
+      </app-card>
+    </mat-grid-tile>
+    <!-- <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart.cols"
+      [rowspan]="(cardLayout | async)?.chart.rows"
+    >
+      <app-card title="Product Sales">
+
+      </app-card>
+    </mat-grid-tile> -->
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart.cols"
+      [rowspan]="(cardLayout | async)?.chart.rows"
+    >
+      <app-card title="Contacts">
+        <app-contact-list></app-contact-list>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile
+      [colspan]="(cardLayout | async)?.chart.cols"
+      [rowspan]="(cardLayout | async)?.chart.rows"
+    >
+      <app-card title="Service Request"> </app-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>

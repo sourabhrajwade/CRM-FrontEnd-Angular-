@@ -1,0 +1,79 @@
+<app-toasts></app-toasts>
+<form [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="login-card">
+    <mat-card-header class="header">
+      <mat-card-title class="item">  🚀  WELCOME TO CRM   🇮🇳  </mat-card-title>
+
+      <mat-card-title class="item" > LOGIN  </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Email Id"
+              formControlName="email"
+              type="email"
+            />
+            <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Password"
+              #password
+              formControlName="password"
+              minlength="6"
+              type="password"
+            />
+            <mat-error
+              *ngIf="loginForm.controls['password'].hasError('required')"
+            >
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-hint align="end"
+              >{{ password.value.length }} / 6</mat-hint
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input
+              #passwordConfirm
+              matInput
+              placeholder="Confirm Password"
+              type="password"
+              formControlName="passwordConfirm"
+              minlength="6"
+            />
+            <mat-error
+              *ngIf="loginForm.controls['passwordConfirm'].hasError('required')"
+            >
+              Password is <strong>required</strong>
+            </mat-error>
+            <mat-hint align="end"
+              >{{ passwordConfirm.value.length }} / 6</mat-hint
+            >
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+            <mat-checkbox formControlName="checked" [(ngModel)]="checked">Accept Terms and Condition</mat-checkbox>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="full-width" mat-raised-button color="primary" type="submit">LOGIN</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
