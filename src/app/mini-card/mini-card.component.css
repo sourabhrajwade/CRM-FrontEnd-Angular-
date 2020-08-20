@@ -16,12 +16,14 @@
   font-weight: 400;
   margin: 0;
   text-align: center;
-  color: grey;
+
 }
 
 .avatar-icon {
   margin: 15px;
-  transform: scale(2);
+  transform: scale(1.5);
+  color: rgb(238, 106, 18);
+
 }
 
 .duration {

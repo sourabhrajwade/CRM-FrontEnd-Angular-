@@ -7,6 +7,7 @@ export interface CRMSummary {
   isIncrease: boolean;
   isCurrency: boolean;
   icon: string;
+  status?: object;
 }
 
 export interface CRMDataReview {
