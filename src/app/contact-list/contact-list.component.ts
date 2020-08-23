@@ -20,10 +20,10 @@ export class ContactListComponent implements OnInit {
   dataTransf: any[] = [];
   dataSel: any = {};
   displayColumn: string[] = [
+    'name',
     'email',
-    'mobile',
+    'phone',
     'description',
-    'companyName',
     'action',
   ];
 
@@ -31,8 +31,9 @@ export class ContactListComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) pagination: MatPaginator;
   ngOnInit(): void {
-    this.crmService.getLeadsCount().subscribe((result) => {
-      const arr = result['leads'];
+    this.crmService.getContact().subscribe((result) => {
+      // console.log(result);
+      const arr = result['contacts'];
       this.dataTransf.push(arr);
       this.leadData = new MatTableDataSource(arr);
       this.leadData.sort = this.sort;
@@ -47,9 +48,19 @@ export class ContactListComponent implements OnInit {
     });
   }
   edit(ele) {
-    console.log('hello', ele);
+
     this.dataSel  = ele;
-    this.openDialog();
+    const dialogRef = this.dialog.open(ContactComponent, {
+      width: '30vw',
+      height: '70vh',
+      data: this.dataSel
+
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+    });
+
   }
   onSearch() {
     this.searchKey = '';
@@ -58,17 +69,28 @@ export class ContactListComponent implements OnInit {
   applySearch() {
     this.leadData.filter = this.searchKey.trim().toLowerCase();
   }
-  openDialog(): void {
+  create(){
     const dialogRef = this.dialog.open(ContactComponent, {
-      width: '60vw',
-      height: '80vh',
-      data: this.dataSel
-
+      width: '30vw',
+      height: '70vh',
+      data: null
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log('The dialog was closed');
-      this.animal = result;
+
+    });
+
+  }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ContactComponent, {
+      width: '30vw',
+      height: '70vh',
+
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log('The dialog was closed');
+
     });
   }
 }

@@ -1,6 +1,6 @@
 <mat-card>
   <div class="search-div">
-    <button mat-raised-button (click)="openDialog()"><mat-icon >add</mat-icon>Create</button>
+    <button mat-raised-button (click)="create()"><mat-icon >add</mat-icon>Create</button>
     <mat-form-field class="search-form-field" floatLabel="never">
       <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
       <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearch()">
@@ -8,36 +8,36 @@
       </button>
     </mat-form-field>
   </div>
-  <div class="mat-elevation-z8 small-table">
-    <mat-table class="" [dataSource]="leadData" matSort>
+  <div class="mat-elevation-z8">
+    <mat-table [dataSource]="serviceData" matSort>
       <!-- Fullname Column -->
-      <ng-container matColumnDef="fullname">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.fullname}} </mat-cell>
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
       </ng-container>
 
       <!-- Email Column -->
-      <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+      <ng-container matColumnDef="categories">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Categories </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.categories}} </mat-cell>
       </ng-container>
 
       <!-- Mobile Column -->
-      <ng-container matColumnDef="mobile">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.mobile }} </mat-cell>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.status }} </mat-cell>
       </ng-container>
 
       <!-- Description Column -->
-      <ng-container matColumnDef="gender">
-        <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+      <ng-container matColumnDef="assignmed_to">
+        <mat-header-cell *matHeaderCellDef> Assignmed To </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.assignmed_to}} </mat-cell>
       </ng-container>
 
       <!-- CompanyName Column -->
-      <ng-container matColumnDef="status" style="cursor: pointer;">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+      <ng-container matColumnDef="description" style="cursor: pointer;">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
       </ng-container>
       <!-- Edit and Delete Column -->
       <ng-container matColumnDef="action">
@@ -59,8 +59,8 @@
       </ng-container>
       <mat-header-row *matHeaderRowDef="displayColumn"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayColumn;"></mat-row>
-      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': leadData != null}"></mat-footer-row>
-      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(leadData != null && leadData.data.length == 0)}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': serviceData != null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(serviceData != null && serviceData.data.length == 0)}"></mat-footer-row>
     </mat-table>
     <mat-paginator [pageSizeOptions]="[5,10,25,100]" [pageSize] = "5" showFirstLastButtons></mat-paginator>
 

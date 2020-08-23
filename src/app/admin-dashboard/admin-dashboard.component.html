@@ -1,4 +1,4 @@
-<div class="grid-container text-center">
+<div class="grid-container text-center black-color">
   <h1 class="mat-h1">
     CRM 🤝 Dashboard . Welcome {{ user.user.firstname }} 🎉!
   </h1>
@@ -45,15 +45,15 @@
       [rowspan]="(cardLayout | async)?.chart.rows"
     >
       <app-card title="Contacts">
-        <app-contact-list></app-contact-list>
+        <app-admin></app-admin>
       </app-card>
     </mat-grid-tile>
     <mat-grid-tile
       [colspan]="(cardLayout | async)?.chart.cols"
       [rowspan]="(cardLayout | async)?.chart.rows"
     >
-      <app-card title="Service Request"> </app-card>
-    </mat-grid-tile>
+
+    </mat-grid-tile> -
 
   </mat-grid-list>
 </div>

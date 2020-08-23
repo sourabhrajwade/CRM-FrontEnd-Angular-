@@ -18,16 +18,14 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   {
     path: 'admin',
-    component: AdminComponent,
+    component: AdminDashboardComponent,
     canActivate: [AuthGuard],
     data: { roles: [Role.admin] }
 },
-  { path: 'dashboard', component: DashComponent },
+  { path: 'dashboard', component: DashComponent, canActivate: [AuthGuard], },
   { path: 'updatedetail', component: UpdatedetailComponent },
   { path: 'password', component: PasswordupdateComponent },
   { path: 'forgot', component: ForgotComponent },
-  { path: 'admin', component: AdminDashboardComponent },
-
   // otherwise redirect to home
 
 ];

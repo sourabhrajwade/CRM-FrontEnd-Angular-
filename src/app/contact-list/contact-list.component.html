@@ -1,6 +1,6 @@
 
 <div class="search-div">
-  <button mat-raised-button (click)="openDialog()"><mat-icon >add</mat-icon>Create</button>
+  <button mat-raised-button (click)="create()"><mat-icon >add</mat-icon>Create</button>
   <mat-form-field class="search-form-field" floatLabel="never">
     <input matInput [(ngModel)]="searchKey" placeholder="Search" autocomplete="off" (keyup)="applySearch()">
     <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearch()">
@@ -11,6 +11,11 @@
 <div class="mat-elevation-z8">
   <mat-table [dataSource]="leadData" matSort>
 
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
     <!-- Email Column -->
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
@@ -18,7 +23,7 @@
     </ng-container>
 
     <!-- Phone Column -->
-    <ng-container matColumnDef="mobile">
+    <ng-container matColumnDef="phone">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.phone }} </mat-cell>
     </ng-container>
@@ -30,10 +35,7 @@
     </ng-container>
 
     <!-- CompanyName Column -->
-    <ng-container matColumnDef="companyName">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Company Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.companyName}} </mat-cell>
-    </ng-container>
+
     <!-- Edit and Delete Column -->
     <ng-container matColumnDef="action">
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>

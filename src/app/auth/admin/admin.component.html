@@ -1,1 +1,34 @@
-<p>admin works!</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Users
+    </mat-card-title>
+    <mat-card-subtitle>List of all users</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <cdk-virtual-scroll-viewport class="example-viewport" itemSize="60">
+      <dl class="example-dl">
+        <ng-container *cdkVirtualFor="let u of users; let index = index;let odd = odd;" [class.example-alternate]="odd">
+         <mat-card>
+           <mat-card-header>
+             <mat-card-title>
+               <h3>User's Full Name - {{u.firstname | titlecase }} {{u.lastname | titlecase }}</h3>
+             </mat-card-title>
+             <mat-card-subtitle>Email ID - {{u.email| titlecase}}</mat-card-subtitle>
+           </mat-card-header>
+           <mat-card-content>
+             <p>Status of Verification - {{u.isVerified}}.
+             </p>
+             <p> Role of the User - {{u.role| titlecase}}</p>
+           </mat-card-content>
+           <mat-card-actions>
+             <button mat-raised-button color="primary" (click)=openDialog(u) >Assign Role</button>
+             <button mat-raised-button color="warn" (click)=delete(u)><mat-icon>delete</mat-icon></button>
+           </mat-card-actions>
+         </mat-card>
+        </ng-container>
+      </dl>
+    </cdk-virtual-scroll-viewport>
+
+  </mat-card-content>
+</mat-card>

@@ -22,11 +22,10 @@ export class SalesTrafficChartComponent implements OnInit {
 
   ngOnInit() {
     this.crm.getSummary().subscribe((d) => {
-      console.log(d[0].status);
+      // console.log(d[0].status);
       this.pieChartData = Object.values(d[0].status);
       this.pieChartLabels = Object.keys(d[0].status);
-      console.log('Services', this.pieChartLabels);
-      console.log('ServicesKeys', this.pieChartData);
+
     });
   }
 

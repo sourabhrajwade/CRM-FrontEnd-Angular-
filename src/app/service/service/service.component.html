@@ -1,15 +1,15 @@
 <div class="contact-form">
-  <form [formGroup]="contactForm" novalidate (ngSubmit)="onSubmit()">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
     <mat-card class="login-card">
       <mat-card-header class="header">
         <mat-toolbar class="heading">
-          <span class="heading-item"><mat-card-title class="item"> CONTACTS 📓  </mat-card-title></span>
+          <span class="heading-item"><mat-card-title class="item"> SERVICE REQ 📫   </mat-card-title></span>
           <span class="heading-item fill-remaining-space"></span>
           <span class="heading-item"
             ><button
               class="btn-dialog-close"
               mat-stroked-button
-              (click)="close()"
+              (click)="onClose()"
               tabindex="-1"
             >
               <mat-icon>clear</mat-icon>
@@ -24,52 +24,38 @@
               <input
                 matInput
                 placeholder="Name"
-                formControlName="name"
-                type="name"
+                formControlName="title"
+                type="text"
               />
               <mat-error
-                *ngIf="contactForm.controls['name'].hasError('required')"
+                *ngIf="form.controls['title'].hasError('required')"
               >
-                Name is <strong>required</strong>
+                Title is <strong>required</strong>
               </mat-error>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
-              <input
-                matInput
-                placeholder="Email Id"
-                #email
-                formControlName="email"
-                type="email"
-              />
-              <mat-error
-                *ngIf="contactForm.controls['email'].hasError('required')"
-              >
-                Email 📧 is <strong>required</strong>
-              </mat-error>
+            <mat-form-field>
+              <mat-select formControlName="status" placeholder="Status">
+                <mat-option>None</mat-option>
+                <ng-container *ngFor="let s of statusArr">
+                  <mat-option [value]="s.value">{{s.viewValue}}</mat-option>
+                </ng-container>
+              </mat-select>
             </mat-form-field>
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <mat-form-field class="full-width">
-              <input
-                #phone
-                matInput
-                placeholder="Phone"
-                type="number"
-                formControlName="phone"
-                minlength="10"
-              />
-              <mat-error
-                *ngIf="contactForm.controls['phone'].hasError('required')"
-              >
-                Phone is <strong>required</strong>
-              </mat-error>
-              <mat-hint align="end">{{ phone.value.length }} / 10</mat-hint>
+            <mat-form-field>
+              <mat-select formControlName="categories" placeholder="Categories">
+                <mat-option>None</mat-option>
+                <ng-container *ngFor="let s of categoriesArr">
+                  <mat-option [value]="s.value">{{s.viewValue}}</mat-option>
+                </ng-container>
+              </mat-select>
             </mat-form-field>
           </div>
         </div>
@@ -85,11 +71,25 @@
                 minlength="15"
               />
               <mat-error
-                *ngIf="contactForm.controls['phone'].hasError('required')"
+                *ngIf="form.controls['description'].hasError('required')"
               >
                 Description is <strong>required</strong>
               </mat-error>
               <mat-hint align="end">{{ des.value.length }} / 15</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input
+
+                matInput
+                placeholder="Assigned to"
+                type="text"
+                formControlName="assigned_to"
+                minlength="15"
+              />
             </mat-form-field>
           </div>
         </div>
@@ -101,13 +101,13 @@
           color="primary"
           type="submit"
         >
-          ADD CONTACT
+          ADD SERVICE
         </button>
         <button
           class="full-width btn-item"
           mat-raised-button
           color="danger"
-          (click)="clear()"
+          (click)="onClear()"
           type="button"
         >
           CLEAR

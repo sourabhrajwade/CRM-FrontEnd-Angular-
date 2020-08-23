@@ -20,10 +20,10 @@ export class DashComponent implements OnInit{
     map(({ matches }) => {
       if (matches) {
         return {
-          columns: 1,
+          columns: 2,
           miniCard: { cols: 1, rows: 1 },
-          chart: { cols: 1 , rows: 2},
-          table: { cols: 1, rows: 4 },
+          chart: { cols: 2, rows: 2},
+          table: { cols: 2, rows: 4 },
 
         };
       }

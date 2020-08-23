@@ -48,6 +48,9 @@ import { AnnualSalesChartComponent } from './charts/annual-sales-chart/annual-sa
 import { StoreSessionsChartComponent } from './charts/store-sessions-chart/store-sessions-chart.component';
 import { OrdersTableComponent } from './orders-table/orders-table.component';
 import { MatTableModule } from '@angular/material/table';
+import {CdkScrollableModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MiniCardComponent } from './mini-card/mini-card.component';
@@ -55,6 +58,7 @@ import { AdminComponent } from './auth/admin/admin.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ToastComponent } from './toast/toast.component';
+
 import { DialogComponent } from './dialog/dialog.component';
 import { NavNewComponent } from './nav-new/nav-new.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -62,6 +66,8 @@ import { LeadComponent } from './lead/lead.component';
 import { LeadTableComponent } from './lead-table/lead-table.component';
 import { LeadEditComponent } from './lead-edit/lead-edit.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ServiceListComponent } from './service/service-list/service-list.component';
+import { ServiceComponent } from './service/service/service.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +96,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     LeadTableComponent,
     LeadEditComponent,
     AdminDashboardComponent,
+    ServiceListComponent,
+    ServiceComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,7 +134,9 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     FontAwesomeModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatInputModule
+    MatInputModule,
+    CdkScrollableModule,
+    ScrollingModule
   ],
   providers: [
     MatDatepickerModule,

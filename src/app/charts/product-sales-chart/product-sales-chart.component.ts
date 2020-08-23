@@ -22,10 +22,8 @@ export class ProductSalesChartComponent implements OnInit {
 
   ngOnInit() {
     this.crm.getSummary().subscribe((d) => {
-      console.log(d[2].status);
+      // console.log(d[2].status);
       this.arrService = Object.values(d[2].status);
-      console.log('Services', this.arrService);
-
       this.radarChartData = [
         { data: this.arrService, label: 'Service Status' },
       ];

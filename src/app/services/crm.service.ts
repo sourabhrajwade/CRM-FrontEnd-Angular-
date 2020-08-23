@@ -113,7 +113,7 @@ export class CrmService {
       });
       this.data[0].value = leadsLen;
     });
-    this.getServiceCount().subscribe((result) => {
+    this.getServices().subscribe((result) => {
       serviceLen = result['services'].length;
 
       result['services'].forEach((s) => {
@@ -147,7 +147,7 @@ export class CrmService {
 
     return this.crm;
   }
-  getServiceCount() {
+  getServices() {
     return this.http.get(`${environment.URL}/services/all`);
   }
   getContact() {
@@ -162,7 +162,7 @@ export class CrmService {
   createLead(data: Leads) {
     return this.http.post(`${environment.URL}/leads/create`, data);
   }
-  createService(data: Leads) {
+  createService(data) {
     return this.http.post(`${environment.URL}/services/create`, data);
   }
   updateLeads(data) {
@@ -170,5 +170,14 @@ export class CrmService {
   }
   deleteLead(data) {
     return this.http.patch(`${environment.URL}/leads/delete`, data);
+  }
+  updateContact(data: Contact) {
+    return this.http.patch(`${environment.URL}/contacts/update`, data);
+  }
+  updateService(data: Leads) {
+    return this.http.put(`${environment.URL}/services/update`, data);
+  }
+  getallusers() {
+    return this.http.get(`${environment.URL}/admin/getall`);
   }
 }

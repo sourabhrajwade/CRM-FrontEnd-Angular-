@@ -1,0 +1,18 @@
+.example-viewport {
+  height:70vh;
+
+  width: 100%;
+  border: 5px black solid;
+}
+
+.example-dt {
+  height: 30px;
+  font-weight: bold;
+}
+
+.example-dd {
+  height: 30px;
+}
+.example-alternate {
+  background: rgba(95, 92, 92, 0.3);
+}
